@@ -8,10 +8,10 @@ def MP_neuron(theta, x1, x2, w1, w2, b):
         return 0
 
 
-a0=1
-a1=1
-b0=1
-b1=0
+a0=np.random.choice([0,1])
+a1=np.random.choice([0,1])
+b0=np.random.choice([0,1])
+b1=np.random.choice([0,1])
 theta=2
 
 and0=MP_neuron(theta,a0,b0,1,1,0)
@@ -27,4 +27,5 @@ y0=and0
 y1=or0
 y2=or1
 y3=and4
+##
 

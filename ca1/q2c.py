@@ -40,15 +40,15 @@ class AdaLine:
         return y_predicted
 
 #generating data
-x1=np.random.normal(1,0.3,100)
-y1=np.random.normal(1,0.3,100)
+x1=np.random.normal(0,0.6,100)
+y1=np.random.normal(0,0.6,100)
 input0=np.column_stack((x1, y1))
 t0=np.zeros(100)+1
 
-x2=np.random.normal(-1,0.3,100)
-y2=np.random.normal(-1,0.3,100)
+x2=np.random.normal(2,0.8,20)
+y2=np.random.normal(2,0.8,20)
 input1=np.column_stack((x2, y2))
-t1=np.zeros(100)-1
+t1=np.zeros(20)-1
 
 #plot data sets a)
 plt.figure()
@@ -83,8 +83,6 @@ plt.show()
 plt.figure()
 plt.plot(l.err)
 plt.show()
-
-
 
 
 
