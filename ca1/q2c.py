@@ -63,7 +63,7 @@ train_X=np.concatenate((input0,input1))
 train_Y=np.concatenate((t0,t1))
 
 #train the model B)
-l=AdaLine(0.1,50)
+l=AdaLine(0.1,100)
 l.fit(train_X,train_Y)
 # print(l.weights,l.bias)
 # print(l.err)

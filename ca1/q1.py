@@ -18,14 +18,16 @@ and0=MP_neuron(theta,a0,b0,1,1,0)
 and1=MP_neuron(theta,a1,b0,1,1,0)
 and2=MP_neuron(theta,a0,b1,1,1,0)
 and3=MP_neuron(theta,a1,b1,1,1,0)
-or0=MP_neuron(theta,and1,and2,2,2,0)
-cin0=MP_neuron(theta,and1,and2,1,1,0)
-or1=MP_neuron(theta,cin0,and3,2,2,0)
-and4=MP_neuron(theta,cin0,and3,1,1,0)
-
+z11=MP_neuron(theta,and1,and2,2,-1,0)
+z12=MP_neuron(theta,and1,and2,-1,2,0)
+y1=MP_neuron(theta,z11,z12,2,2,0)
+and4=MP_neuron(theta,and1,and2,1,1,0)
+z21=MP_neuron(theta,and4,and3,2,-1,0)
+z22=MP_neuron(theta,and4,and3,-1,2,0)
+y2=MP_neuron(theta,z21,z22,2,2,0)
+y3=MP_neuron(theta,and4,and3,1,1,0)
 y0=and0
-y1=or0
-y2=or1
-y3=and4
-##
 
+print(a1,a0)
+print(b1,b0)
+print(y3,y2,y1,y0)
