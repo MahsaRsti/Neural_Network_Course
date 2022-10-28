@@ -42,13 +42,17 @@ class AdaLine:
 #generating data
 x1=np.random.normal(1,0.3,100)
 y1=np.random.normal(1,0.3,100)
+# print(x1)
+# print(y1)
 input0=np.column_stack((x1, y1))
 t0=np.zeros(100)+1
+print(input0)
 
 x2=np.random.normal(-1,0.3,100)
 y2=np.random.normal(-1,0.3,100)
 input1=np.column_stack((x2, y2))
 t1=np.zeros(100)-1
+print(input1)
 
 #plot data sets a)
 plt.figure()
@@ -61,6 +65,7 @@ plt.show()
 
 train_X=np.concatenate((input0,input1))
 train_Y=np.concatenate((t0,t1))
+print(train_X)
 
 #train the model B)
 l=AdaLine(0.1,50)
