@@ -1,4 +1,3 @@
-import torch  as pt
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -10,28 +9,28 @@ import torch.nn as nn
 
 #A
 hdata=pd.read_csv("E:\\seventh_sem\\Neural_network\\projects\\Neural_network_course\\ca1\\Q4_Dataset\\houses.csv")
-# print(hdata.info())
+print(hdata.info())
 
-# #B
-#hdata.dropna(axis='columns',inplace=True)
-# invalid_rows = [index for index, row in hdata.iterrows() if row.isnull().any()]
-# print(invalid_rows)
+#B
+hdata.dropna(axis='columns',inplace=True)
+invalid_rows = [index for index, row in hdata.iterrows() if row.isnull().any()]
+print(invalid_rows)
 
 #C
-# corr_matrix = hdata.corr()
-# sns.heatmap(corr_matrix, annot=True)
-# plt.title("correlation plot")
-# plt.show()
+corr_matrix = hdata.corr()
+sns.heatmap(corr_matrix, annot=True)
+plt.title("correlation plot")
+plt.show()
 
 #D
-# hdata.plot.hist(column=["price"])
-# plt.title("price distribution")
-# plt.show()
+hdata.plot.hist(column=["price"])
+plt.title("price distribution")
+plt.show()
 
-# sns.barplot(x ='price', y ='sqft_living', data = hdata)
-# plt.xlabel("price")
-# plt.ylabel("sqft_living")
-# plt.show()
+sns.barplot(x ='price', y ='sqft_living', data = hdata)
+plt.xlabel("price")
+plt.ylabel("sqft_living")
+plt.show()
 
 
 #E
@@ -61,7 +60,7 @@ model=nn.Sequential(
                     nn.Linear(50,1)
                     ) 
 
-#I,J,K
+#I,J
 learning_rate = 0.0005 
 epochs = 100
 
@@ -82,7 +81,7 @@ for optim_loss in [0,1]:
   elif optim_loss==1:
     optim=torch.optim.ASGD(model.parameters(), lr = learning_rate)
     loss_func=nn.L1Loss()
-    
+
   train_loss = []
   test_loss = []
   for epoch in range(epochs):
@@ -95,7 +94,8 @@ for optim_loss in [0,1]:
     # print(f'epoch',epoch)
     # print(f'train loss:',loss.item())
     with torch.no_grad():
-      los=loss_func(model(test_inputs), test_targets)
+      tests_out=model(test_inputs)
+      los=loss_func(tests_out, test_targets)
       # print(f'test loss:',los.item())
       test_loss.append(float(los.item()))
 
@@ -106,11 +106,15 @@ for optim_loss in [0,1]:
   plt.legend()
   plt.xlabel("epoch")
   plt.ylabel("loss")
+  if optim_loss==0: plt.title("Optimizer=Adam and Loss function=MSEloss")
+  elif optim_loss==1: plt.title("Optimizer=ASGD and Loss function=L1Loss")
   plt.show()
 
-# indice=np.random.choice(test_inputs.tolist(), 5)
-# # indice.tolist()
-# with torch.no_grad():
-#   out_test=model(test_inputs[indice])
-# print(test_targets[indice],    out_test)
+#k
+for i in range(5):
+  indice=np.random.randint(0,len(test_inputs))
+  print(f"test data",i)
+  print(f"Real_Price = ",test_targets[indice],f"Predicted_Price = ",tests_out[indice])
+  print(f"Differences = ",test_targets[indice]-tests_out[indice])
+
 
