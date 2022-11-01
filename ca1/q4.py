@@ -23,7 +23,7 @@ plt.title("correlation plot")
 plt.show()
 
 #D
-hdata.plot.hist(column=["price"])
+hdata.plot.scatter('id','price')
 plt.title("price distribution")
 plt.show()
 
